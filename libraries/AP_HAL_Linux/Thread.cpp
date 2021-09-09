@@ -73,10 +73,20 @@ bool Thread::_run()
  *     p can be written p = q + p % a, where q is rounded down to the
  *     alignment a. Then u = q + a.
  */
+ 
 static inline void *align_to(void *p, size_t align)
 {
     return (void *)(((uintptr_t)p + align - 1) & ~(align - 1));
 }
+
+/**
+   * naodai：2021.09.09
+   * inline:C++内联函数
+   * 编译器将相应的函数代码替换函数调用，提高程序运行速度
+   * 如果函数执行时间长，调用机制时间短，则节省的时间只占用过程的一小部分；如果函数执行时间短，但是调用机制时间长，则节省时间占用整个过程的大部分；
+   * 适用于频繁被调用的代码少的函数；
+   * 内联函数和常规函数一样，使用按值传参，相对于宏定义使用文本替换，应考虑将宏定义替换为内联函数；
+ **/
 
 void Thread::_poison_stack()
 {

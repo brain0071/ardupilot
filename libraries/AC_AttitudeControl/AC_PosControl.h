@@ -376,6 +376,7 @@ protected:
 
     // references to inertial nav and ahrs libraries
     AP_AHRS_View &        _ahrs;
+
     const AP_InertialNav&       _inav;
     const AP_Motors&            _motors;
     AC_AttitudeControl&         _attitude_control;

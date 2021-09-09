@@ -186,6 +186,16 @@ void Sub::update_poscon_alt_max()
 }
 
 // rotate vector from vehicle's perspective to North-East frame
+/**
+  * naodai:2021.09.09
+  * float &x:按引用传递
+  * x为调用程序中参数变量的别名；x的类型为float &
+  * 被GCS_MAVLINK_Sub::handleMessage(const mavlink_message_t &msg)所调用
+  * 调用语句：sub.rotate_body_frame_to_NE(pos_vector.x, pos_vector.y);
+  * x为pos_vector.x的别名
+  * 在调用过程中，实际只使用一个变量，具有两个名称
+  * 函数调用过程使用实参初始化形参
+  **/
 void Sub::rotate_body_frame_to_NE(float &x, float &y)
 {
     float ne_x = x*ahrs.cos_yaw() - y*ahrs.sin_yaw();
@@ -193,6 +203,13 @@ void Sub::rotate_body_frame_to_NE(float &x, float &y)
     x = ne_x;
     y = ne_y;
 }
+/**
+     * naodai:2021.09.09
+     * &：引用
+     * 声明引用时，必须初始化，指针可先声明再赋值；
+     * 引用更接近与常量指针；
+     * int & rodents = rats; int * const pr = &rats;//等价
+     ***/
 
 // It will return the PILOT_SPEED_DN value if non zero, otherwise if zero it returns the PILOT_SPEED_UP value.
 uint16_t Sub::get_pilot_speed_dn()
