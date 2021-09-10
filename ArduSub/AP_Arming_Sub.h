@@ -9,6 +9,10 @@ public:
 
     /* Do not allow copies */
     AP_Arming_Sub(const AP_Arming_Sub &other) = delete;
+    /**
+      * naodai:2021.09.10
+      * 引用结构和类
+      **/
     AP_Arming_Sub &operator=(const AP_Arming_Sub&) = delete;
 
     bool rc_calibration_checks(bool display_failure) override;

@@ -187,7 +187,8 @@ private:
 
     // GCS selection
     GCS_Sub _gcs; // avoid using this; use gcs()
-    GCS_Sub &gcs() { return _gcs; }
+    //naodai:2021.09.10 返回引用类型的函数
+    GCS_Sub & gcs() { return _gcs; }
 
     // User variables
 #ifdef USERHOOK_VARIABLES
@@ -668,4 +669,5 @@ public:
 };
 
 extern const AP_HAL::HAL& hal;
+
 extern Sub sub;

@@ -18,6 +18,7 @@
 #include "version.h"
 #undef FORCE_VERSION_H_INCLUDE
 
+//naodai:2021.09.10 引用声明
 const AP_HAL::HAL& hal = AP_HAL::get_HAL();
 
 /*

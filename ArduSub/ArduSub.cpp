@@ -31,11 +31,17 @@ const AP_Scheduler::Task Sub::scheduler_tasks[] = {
     SCHED_TASK_CLASS(OpticalFlow,          &sub.optflow,             update,         200, 160),
 #endif
     SCHED_TASK(update_batt_compass,   10,    120),
+    /**
+     * naodai:2021.09.10
+     * 函数指针：
+     * update_batt_compass：函数名后面不加参数，表示函数地址
+     * **/
     SCHED_TASK(read_rangefinder,      20,    100),
     SCHED_TASK(update_altitude,       10,    100),
     SCHED_TASK(three_hz_loop,          3,     75),
     SCHED_TASK(update_turn_counter,   10,     50),
     SCHED_TASK_CLASS(AP_Baro,             &sub.barometer,    accumulate,          50,  90),
+    //
     SCHED_TASK_CLASS(AP_Notify,           &sub.notify,       update,              50,  90),
     SCHED_TASK(one_hz_loop,            1,    100),
     SCHED_TASK_CLASS(GCS,                 (GCS*)&sub._gcs,   update_receive,     400, 180),
@@ -81,8 +87,8 @@ const AP_Scheduler::Task Sub::scheduler_tasks[] = {
     SCHED_TASK(read_airspeed,          10,    100),
 };
 
-void Sub::get_scheduler_tasks(const AP_Scheduler::Task *&tasks,
-                                 uint8_t &task_count,
+void Sub::get_scheduler_tasks(const AP_Scheduler::Task * &tasks, //指针类型引用变量
+                                 uint8_t &task_count, //引用类型
                                  uint32_t &log_bit)
 {
     tasks = &scheduler_tasks[0];

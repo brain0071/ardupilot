@@ -4,6 +4,11 @@
 
 namespace AP_HAL {
 
+/**
+ * naodai:2021.09.10
+ * void (*setup_fun)(void), void (*loop_fun)(void)声明函数指针
+ * *setup_fun为指向函数的函数指针
+ * **/
 HAL::FunCallbacks::FunCallbacks(void (*setup_fun)(void), void (*loop_fun)(void))
     : _setup(setup_fun)
     , _loop(loop_fun)
